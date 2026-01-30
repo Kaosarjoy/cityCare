@@ -29,7 +29,7 @@ const Banner = () => {
             <img
               src={banner}
               alt={`Banner ${i + 1}`}
-              className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover"
+              className="w-full h-75 sm:h-80 lg:h-85 object-cover"
             />
             {/* Optional overlay text */}
             <div className="absolute inset-0 bg-black/25 flex items-center justify-center">
