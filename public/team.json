@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Kaosar Uddin Joy",
+    "role": "Founder & Project Lead",
+    "bio": "Leads the vision of CityCare with a focus on civic responsibility, transparency, and scalable digital solutions.",
+    "image": "https://i.ibb.co.com/Txt6dYHC/httpsi-ibb-co-com-Zp91-CBctjoy.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Nusrat Jahan",
+    "role": "Frontend Developer",
+    "bio": "Responsible for building responsive, accessible, and user-friendly interfaces using modern React technologies.",
+    "image": "https://i.ibb.co.com/Y7qJ7PNR/abdul-raheem-kannath-0a-Dy-YQAQB30-unsplash.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Tanvir Ahmed",
+    "role": "Backend Developer",
+    "bio": "Designs secure APIs and manages server-side logic, database architecture, and performance optimization.",
+    "image": "https://i.ibb.co.com/xtJ20JxT/karlo-tottoc-yb-Z5h-Rxa-WS4-unsplash.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Sadia Islam",
+    "role": "UI/UX Designer",
+    "bio": "Crafts intuitive designs ensuring a smooth and inclusive user experience for all citizens.",
+    "image": "https://i.ibb.co.com/Y7qJ7PNR/abdul-raheem-kannath-0a-Dy-YQAQB30-unsplash.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Mahmudul Hasan",
+    "role": "Database Engineer",
+    "bio": "Manages data modeling, indexing, and ensures reliable data storage and retrieval.",
+    "image": "https://i.ibb.co.com/xtJ20JxT/karlo-tottoc-yb-Z5h-Rxa-WS4-unsplash.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Farhana Rahman",
+    "role": "Quality Assurance Engineer",
+    "bio": "Ensures CityCare remains bug-free, reliable, and production-ready through rigorous testing.",
+    "image": "https://i.ibb.co.com/Y7qJ7PNR/abdul-raheem-kannath-0a-Dy-YQAQB30-unsplash.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Rifat Khan",
+    "role": "DevOps & Deployment Engineer",
+    "bio": "Handles deployment, environment configuration, and keeps the system stable and scalable.",
+    "image": "https://i.ibb.co.com/k6VhMmqp/ben-sweet-2-Lowvi-VHZ-E-unsplash.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Jannatul Ferdous",
+    "role": "Community & Support Manager",
+    "bio": "Acts as the bridge between citizens and the platform, ensuring feedback-driven improvements.",
+    "image": "https://i.ibb.co.com/Y7qJ7PNR/abdul-raheem-kannath-0a-Dy-YQAQB30-unsplash.jpg"
+  }
+]

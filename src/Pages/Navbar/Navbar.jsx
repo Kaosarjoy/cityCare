@@ -1,9 +1,10 @@
-import React from 'react';
-import { NavLink } from 'react-router';
-import logoImg from '../../assets/logo.png';
+import React from "react";
+import { NavLink } from "react-router";
+import logoImg from "../../assets/logo.png";
+import ThemeToggle from "../../Toggle/theme";
 
 const Navbar = () => {
-
+  
   const links = (
     <>
       <li><NavLink to="/services">Services</NavLink></li>
@@ -18,7 +19,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar bg-base-100 shadow-md px-4">
-      
+
       {/* Left */}
       <div className="navbar-start">
         <div className="dropdown">
@@ -31,19 +32,17 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3  p-2 shadow bg-base-100 rounded-box w-52">
+            className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
             {links}
           </ul>
         </div>
 
-        <div >
-          <NavLink className='/ flex items-center gap-2'>
-            <img src={logoImg} alt="logo" className="w-10" />
+        <NavLink to="/" className="flex items-center gap-2">
+          <img src={logoImg} alt="logo" className="w-10" />
           <span className="text-xl font-semibold hidden md:block text-black">
-           CityCare
+            CityCare
           </span>
-          </NavLink>
-        </div>
+        </NavLink>
       </div>
 
       {/* Center */}
@@ -54,8 +53,9 @@ const Navbar = () => {
       </div>
 
       {/* Right */}
-      <div className="navbar-end">
-        <NavLink to="/login"  className="btn btn-primary btn-sm">
+      <div className="navbar-end flex items-center gap-2">
+        <ThemeToggle />  {/* এখানেই useTheme internally আছে */}
+        <NavLink to="/login" className="btn btn-primary btn-sm">
           Log In
         </NavLink>
       </div>

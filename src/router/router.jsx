@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home";
 import Service from "../Pages/Service/Service";
 import Coverage from "../Pages/Coverage/Coverage";
 import Blog from "../Pages/Blog/Blog";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 export const router = createBrowserRouter(
 [
@@ -16,7 +17,7 @@ export const router = createBrowserRouter(
              Component:Home
            },
            {
-            path:'/service',
+            path:'/services',
             Component:Service
            },{
             path:'/coverage',
@@ -26,7 +27,13 @@ export const router = createBrowserRouter(
            {
             path:'/blog',
             Component:Blog
+           },
+           {
+            path:"/aboutUs",
+            Component:AboutUs,
+            loader:()=>fetch('/team.json').then(res=>res.json())
            }
+           
         ]
     }
 ]

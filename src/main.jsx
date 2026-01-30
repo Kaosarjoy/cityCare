@@ -4,9 +4,13 @@ import './index.css'
 import App from './App.jsx'
 import { RouterProvider } from 'react-router'
 import { router } from './router/router.jsx'
+import { ThemeProvider } from 'next-themes'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-   <RouterProvider router={router}></RouterProvider>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+  <RouterProvider router={router}></RouterProvider>
+      </ThemeProvider>
+   
   </StrictMode>,
 )
