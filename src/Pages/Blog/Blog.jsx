@@ -29,7 +29,7 @@ const Blog = () => {
     <article className="bg-base-200 min-h-screen pb-20">
       
       {/* Hero Section: Impactful & Immersive */}
-      <header className="relative h-[300px] md:h-[450px] overflow-hidden">
+      <header className="relative h-75 md:h-80 overflow-hidden">
         <img
           src={CityImg}
           className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
