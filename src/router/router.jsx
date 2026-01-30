@@ -3,6 +3,7 @@ import RootLayOut from "../LayOut/RootLayOut";
 import Home from "../Pages/Home/Home";
 import Service from "../Pages/Service/Service";
 import Coverage from "../Pages/Coverage/Coverage";
+import Blog from "../Pages/Blog/Blog";
 
 export const router = createBrowserRouter(
 [
@@ -21,6 +22,10 @@ export const router = createBrowserRouter(
             path:'/coverage',
             Component:Coverage,
             loader:()=>fetch('/map.json').then(res=>res.json())
+           },
+           {
+            path:'/blog',
+            Component:Blog
            }
         ]
     }

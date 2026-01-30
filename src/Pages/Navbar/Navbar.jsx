@@ -36,11 +36,13 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div className="flex items-center gap-2">
-          <img src={logoImg} alt="logo" className="w-10" />
-          <span className="text-xl font-semibold hidden md:block">
+        <div >
+          <NavLink className='/ flex items-center gap-2'>
+            <img src={logoImg} alt="logo" className="w-10" />
+          <span className="text-xl font-semibold hidden md:block text-black">
            CityCare
           </span>
+          </NavLink>
         </div>
       </div>
 
@@ -53,7 +55,7 @@ const Navbar = () => {
 
       {/* Right */}
       <div className="navbar-end">
-        <NavLink to="/login"  className="btn btn-secondary btn-sm">
+        <NavLink to="/login"  className="btn btn-primary btn-sm">
           Log In
         </NavLink>
       </div>

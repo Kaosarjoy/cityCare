@@ -1,16 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&display=swap');
 
 @import "tailwindcss";
-@plugin "daisyui";
 
-@theme {
-  --color-primary: #3B82F6;
-  --color-secondary: #16A34A;
-  --color-base-200: #F1F5F9;
-  --color-accent: #1E293B;
+
+@plugin "daisyui" {
+  themes: light;
 }
-.body{
-   font-family: "Playwrite NZ Basic", cursive;
-  font-optical-sizing: auto;
-  
+@theme {
+  --color-primary: #4EEF20;
+  --color-secondary: #03373D;
+  --color-base-200: #33929D;
+  --color-accent:#FAFDF0;
+}
+ body{
+   font-family: "Playwrite NZ Basic";
+  font-optical-sizing: auto; 
+}
+.active{
+  color: cyan;
 }
