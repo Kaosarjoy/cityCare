@@ -1,20 +1,23 @@
-import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
+
+
 export default function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-  const mount = () => setMounted(true);
-  mount();
-}, []);
+ const [currentTheme,setCurrentTheme]=useState('light')
 
-  if (!mounted) return null;
+ useEffect(()=>{
+    document.documentElement.setAttribute('data-theme',currentTheme)
+ },[currentTheme])
+
+ 
 
   return (
-    <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-      {theme === "dark" ? "🌙" : "☀️"}
+    <button
+      onClick={() => setCurrentTheme(currentTheme === "dark" ? "light" : "dark")}
+      className="p-2 border-white"
+    >
+      {currentTheme === "dark" ? "🌙" : "☀️"}
     </button>
   );
 }

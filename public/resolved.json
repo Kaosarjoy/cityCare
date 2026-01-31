@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "title": "Broken Streetlight Repaired",
+    "category": "Street Light",
+    "status": "Resolved",
+    "priority": "Normal",
+    "location": "Dhanmondi, Dhaka",
+    "image": "https://i.ibb.co.com/v4qWBHXr/julian-hochgesang-LQ9-U8ch8-Ck-unsplash.jpg",
+    "description": "A major streetlight in Dhanmondi was not functioning for several weeks, causing safety concerns for pedestrians and vehicles during nighttime. After verification, the assigned staff replaced the damaged wiring and installed a new LED bulb. The area is now well-lit and safe for public movement.",
+    "resolvedDate": "2024-12-18"
+  },
+  {
+    "id": 2,
+    "title": "Pothole on Main Road Fixed",
+    "category": "Road",
+    "status": "Resolved",
+    "priority": "High",
+    "location": "Mirpur 10, Dhaka",
+    "image": "https://i.ibb.co.com/TxSbK4Gd/athithan-vignakaran-k-Ye55iat-RGI-unsplash.jpg",
+    "description": "A deep pothole on the main road at Mirpur 10 was creating heavy traffic congestion and frequent vehicle damage. The issue was marked as high priority and repaired using proper asphalt layering. Traffic flow has returned to normal and road safety has improved significantly.",
+    "resolvedDate": "2024-12-15"
+  },
+  {
+    "id": 3,
+    "title": "Garbage Overflow Cleared",
+    "category": "Waste Management",
+    "status": "Resolved",
+    "priority": "Normal",
+    "location": "Uttara Sector 7",
+    "image": "https://i.ibb.co.com/qY3M3X8R/zibik-i-R4m-Clggz-EU-unsplash.jpg",
+    "description": "Residents of Uttara Sector 7 reported continuous garbage overflow causing foul odor and health risks. Municipal staff promptly removed accumulated waste, sanitized the area, and scheduled regular waste collection to prevent future occurrences.",
+    "resolvedDate": "2024-12-12"
+  },
+  {
+    "id": 4,
+    "title": "Water Leakage Pipeline Repaired",
+    "category": "Water Supply",
+    "status": "Resolved",
+    "priority": "High",
+    "location": "Mohammadpur Housing",
+    "image": "https://i.ibb.co.com/KzyZPSJD/andrew-solok-Qfs-Qo-RDt-VFY-unsplash.jpg",
+    "description": "A damaged underground water pipeline in Mohammadpur Housing was causing continuous water leakage and road damage. After inspection, the faulty section was replaced and pressure-tested. Water wastage has been stopped and road conditions restored.",
+    "resolvedDate": "2024-12-10"
+  },
+  {
+    "id": 5,
+    "title": "Damaged Footpath Restored",
+    "category": "Footpath",
+    "status": "Resolved",
+    "priority": "Normal",
+    "location": "Farmgate, Dhaka",
+    "image": "https://i.ibb.co.com/272D8jkj/amelia-vu-35-QCQIet-W-U-unsplash.jpg",
+    "description": "The footpath near Farmgate bus stand was broken and unsafe for pedestrians, especially elderly citizens. CityCare staff repaired the surface with concrete blocks and ensured proper leveling, making it safe and accessible for daily use.",
+    "resolvedDate": "2024-12-08"
+  },
+  {
+    "id": 6,
+    "title": "Blocked Drainage System Cleaned",
+    "category": "Drainage",
+    "status": "Resolved",
+    "priority": "High",
+    "location": "Jatrabari Area",
+    "image": "https://i.ibb.co.com/0VsP6gvg/matt-w-newman-n-MU8-O4-Lt2-KE-unsplash.jpg",
+    "description": "A blocked drainage system in the Jatrabari area was causing waterlogging during light rain. The drainage line was cleared of debris and sludge, restoring proper water flow and reducing the risk of flooding during the rainy season.",
+    "resolvedDate": "2024-12-05"
+  }
+]
