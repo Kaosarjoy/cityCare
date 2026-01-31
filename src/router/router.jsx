@@ -5,6 +5,9 @@ import Service from "../Pages/Service/Service";
 import Coverage from "../Pages/Coverage/Coverage";
 import Blog from "../Pages/Blog/Blog";
 import AboutUs from "../Pages/AboutUs/AboutUs";
+import AuthLayout from "../LayOut/AuthLayout";
+import Login from "../Pages/Auth/Login";
+import Register from "../Pages/Auth/Register";
 
 export const router = createBrowserRouter(
 [
@@ -18,23 +21,37 @@ export const router = createBrowserRouter(
             loader:()=>fetch('/team.json').then(res=>res.json())
            },
            {
-            path:'/services',
+            path:'services',
             Component:Service
            },{
-            path:'/coverage',
+            path:'coverage',
             Component:Coverage,
             loader:()=>fetch('/map.json').then(res=>res.json())
            },
            {
-            path:'/blog',
+            path:'blog',
             Component:Blog
            },
            {
-            path:"/aboutUs",
+            path:"aboutUs",
             Component:AboutUs,
             loader:()=>fetch('/team.json').then(res=>res.json())
            }
            
+        ]
+    },
+    {
+        path:'/',
+        Component:AuthLayout,
+        children:[
+            {
+                path:'login',
+                Component:Login
+            },
+            {
+                path:'register',
+                Component:Register
+            }
         ]
     }
 ]
