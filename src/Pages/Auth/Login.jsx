@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import whiteImg from '../../assets/white.jpg';
 import useAuth from '../../hooks/UseAuth';
-
+import Register from '../Auth/Register';
 const Login = () => {
   const { LoginUser, googleSignIn } = useAuth();
   const location = useLocation();
@@ -129,7 +129,7 @@ const Login = () => {
         <p className="text-center text-gray-300">
           Don’t have an account?{' '}
           <NavLink
-            to="register"
+            to="/register"
             state={location.state}
             className="text-secondary font-medium hover:underline"
           >

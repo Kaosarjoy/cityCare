@@ -1,10 +1,20 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import logoImg from "../../assets/logo.png";
 import ThemeToggle from "../../Toggle/theme";
+import useAuth from "../../hooks/UseAuth";
+
 
 const Navbar = () => {
-  
+  const navigate = useNavigate();
+    const {user,signOutUser} =useAuth()
+    const handleSignOutUser= ()=>{
+      signOutUser()
+      .then(()=>{
+        navigate('/')
+      })
+         .catch(error => console.log(error.message));
+    }
   const links = (
     <>
       <li><NavLink to="/services">Services</NavLink></li>
@@ -55,9 +65,27 @@ const Navbar = () => {
       {/* Right */}
       <div className="navbar-end flex items-center gap-2">
         <ThemeToggle />  {/* এখানেই useTheme internally আছে */}
+       {
+        user ?
+        <>
+        <img
+  src={user?.photoURL || '/default-user.png'}
+  alt="user"
+  className="w-10 h-10 rounded-full  object-cover"
+/>
+<button onClick={handleSignOutUser} className="btn btn-secondary btn-sm">
+          LogOut
+        </button>
+        </>
+         : <>
+        
         <NavLink to="/login" className="btn btn-primary btn-sm">
           Log In
         </NavLink>
+        <NavLink to="/register" className='btn btn-secondary btn-sm '>
+        Register
+        </NavLink></>
+       }
       </div>
 
     </div>

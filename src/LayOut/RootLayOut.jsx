@@ -1,16 +1,31 @@
 import React from 'react';
 import Navbar from '../Pages/Navbar/Navbar';
-import { Outlet } from 'react-router';
+import { Outlet, useNavigation } from 'react-router';
 import Footer from '../Pages/Footer/Footer';
+import Loader from '../Pages/Loader';
 
-const RootLayOut = () => {
-    return (
-        <div  className='mx-w-7xl mx-auto '>
-            <Navbar></Navbar>
-            <Outlet></Outlet>
-            <Footer></Footer>
+const RootLayout = () => {
+  const navigation = useNavigation();
+
+  return (
+    <div className="max-w-7xl mx-auto">
+      <Navbar />
+
+      {/* Loader overlay */}
+      {navigation.state === "loading" && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
+          <Loader />
         </div>
-    );
+      )}
+
+      {/* Page content */}
+      <div className={navigation.state === "loading" ? "opacity-50 pointer-events-none" : ""}>
+        <Outlet />
+      </div>
+
+      <Footer />
+    </div>
+  );
 };
 
-export default RootLayOut;
+export default RootLayout;
