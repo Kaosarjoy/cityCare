@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Rafiq",
+    "city": "Dhaka",
+    "problem": "Street light near house was not working",
+    "solution": "CityCare quickly fixed the street light",
+    "feedback": "It was dark and unsafe at night, but now the road is bright and safe. Really impressed with their response time!"
+  },
+  {
+    "id": 2,
+    "name": "Lina",
+    "city": "Chittagong",
+    "problem": "Huge pothole outside office",
+    "solution": "Reported and repaired within a week",
+    "feedback": "No more damaged tires. Super happy!"
+  },
+  {
+    "id": 3,
+    "name": "Sabbir",
+    "city": "Khulna",
+    "problem": "Overflowing trash bins near park",
+    "solution": "CityCare cleaned everything promptly",
+    "feedback": "The park looks amazing again. Thank you!"
+  },
+  {
+    "id": 4,
+    "name": "Moushumi",
+    "city": "Sylhet",
+    "problem": "Water pipe constantly leaking",
+    "solution": "Issue fixed the next day after reporting",
+    "feedback": "Excellent service!"
+  },
+  {
+    "id": 5,
+    "name": "Jamil",
+    "city": "Rajshahi",
+    "problem": "Broken footpath near school",
+    "solution": "CityCare assigned repair team immediately",
+    "feedback": "Now it’s smooth and safe. Amazing!"
+  },
+  {
+    "id": 6,
+    "name": "Farhana",
+    "city": "Barisal",
+    "problem": "Traffic lights not working at busy junction",
+    "solution": "Fixed quickly by CityCare",
+    "feedback": "Traffic flows smoothly now. Very satisfied!"
+  },
+  {
+    "id": 7,
+    "name": "Tanvir",
+    "city": "Rangpur",
+    "problem": "Vendors blocked the road causing traffic",
+    "solution": "CityCare coordinated with authorities to clear the area",
+    "feedback": "Great work!"
+  },
+  {
+    "id": 8,
+    "name": "Sumi",
+    "city": "Mymensingh",
+    "problem": "Fallen tree branch blocking the road after storm",
+    "solution": "Removed within hours after reporting",
+    "feedback": "Really impressed!"
+  },
+  {
+    "id": 9,
+    "name": "Hasan",
+    "city": "Comilla",
+    "problem": "Neighborhood streets dirty with construction waste",
+    "solution": "CityCare organized a clean-up",
+    "feedback": "Now the area looks neat and fresh. Very happy!"
+  },
+  {
+    "id": 10,
+    "name": "Taslima",
+    "city": "Bogura",
+    "problem": "Street used to flood after heavy rain",
+    "solution": "Drainage cleared via CityCare",
+    "feedback": "No more waterlogging! Amazing service."
+  }
+]

@@ -3,15 +3,21 @@ import Banner from '../Banner';
 import AboutUs from '../AboutUs/AboutUs';
 import Resolved from './Resolved';
 import FAQ from './FAQ';
+import Reviews from './UserReview/Reviews';
+const reviewPromise = fetch('/review.json')
+  .then(res => res.json());
 
 
 const Home = () => {
+
     return (
         <div className='mx-auto mt-3  '>
             <Banner></Banner>
             <AboutUs></AboutUs>
             <Resolved></Resolved>
+            <Reviews reviewPromise={reviewPromise}></Reviews>
             <FAQ></FAQ>
+            
         </div>
     );
 };
