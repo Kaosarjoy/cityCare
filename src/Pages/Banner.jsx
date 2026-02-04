@@ -12,7 +12,7 @@ const Banner = () => {
   const banners = [banner1, banner2, banner3, banner4, banner5, banner6];
 
   return (
-    <div className="w-full mx-auto">
+    <div className="w-full mx-auto ">
       <Carousel
         infiniteLoop
         autoPlay

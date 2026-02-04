@@ -2,14 +2,16 @@ import React from 'react';
 import Banner from '../Banner';
 import AboutUs from '../AboutUs/AboutUs';
 import Resolved from './Resolved';
+import FAQ from './FAQ';
 
 
 const Home = () => {
     return (
-        <div>
+        <div className='mx-auto mt-3  '>
             <Banner></Banner>
             <AboutUs></AboutUs>
             <Resolved></Resolved>
+            <FAQ></FAQ>
         </div>
     );
 };
