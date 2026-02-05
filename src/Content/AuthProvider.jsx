@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../Firebase/Firebase.init';
-import { sendPasswordResetEmail } from 'firebase/auth/cordova';
+import { sendPasswordResetEmail } from 'firebase/auth';
 import { AuthContexts } from './AuthContexts';
 
 
