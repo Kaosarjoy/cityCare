@@ -4,6 +4,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../hooks/UseAuth';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import useAxios from '../../hooks/Useaxios';
 
 
 const Register = () => {
@@ -13,6 +14,7 @@ const { registerUser, googleSignIn, updateUserProfile } = useAuth();
 
 const location = useLocation();
 const navigate = useNavigate();
+const  axiosSecure = useAxios();
 
 // react-hook-form setup
 const {
@@ -26,7 +28,7 @@ const {
 const handleRegister = (data) => {
   const profileImage = data.photo[0];
 
-  // 1️ User create
+  // 1️ Firebase user create
   registerUser(data.email, data.password)
     .then(() => {
 
@@ -37,45 +39,50 @@ const handleRegister = (data) => {
       const image_API_URL =
         `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_API}`;
 
-      // 3️ Upload image
-      axios.post(image_API_URL, formData)
-        .then((res) => {
-          const photoURL = res.data.data.display_url;
+      // 3️ Image upload
+      return axios.post(image_API_URL, formData);
+    })
+    .then((res) => {
+      const photoURL = res.data.data.display_url;
 
-          // 4️ Profile update data
-          const profile = {
-            displayName: data.name,
-            photoURL: photoURL,
-          };
+      // 4️ Firebase profile update
+      return updateUserProfile({
+        displayName: data.name,
+        photoURL: photoURL,
+      }).then(() => photoURL);
+    })
+    .then((photoURL) => {
 
-          // 5️ Update Firebase profile
-          updateUserProfile(profile)
-            .then(() => {
+      // 5️ Backend user save ( useAxios এখানে)
+      const userInfo = {
+        displayName: data.name,
+        email: data.email,
+        photoURL: photoURL,
+      };
 
-              //  SUCCESS ALERT
-              Swal.fire({
-                icon: 'success',
-                title: 'Account Created!',
-                text: 'ZapShift এ স্বাগতম 🔥',
-                confirmButtonColor: '#3085d6',
-              }).then(() => {
-                // navigate
-                navigate(location?.state || '/');
-              });
+      return axiosSecure.post('/users', userInfo);
+    })
+    .then(() => {
 
-            });
-      
-          });
+      // 6️ SUCCESS ALERT
+      Swal.fire({
+        icon: 'success',
+        title: 'Account Created!',
+        text: 'Welcome to the CityCare App',
+        confirmButtonColor: '#3085d6',
+      }).then(() => {
+        navigate(location?.state || '/');
+      });
     })
     .catch((error) => {
 
-      // ERROR ALERT
+      //  ERROR ALERT
       Swal.fire({
         icon: 'error',
         title: 'Registration Failed',
         text: error.message,
       });
-
+   
     });
 };
 
@@ -117,7 +124,7 @@ const handleGoogleSignIn = () => {
     <h2 className="text-3xl font-bold text-center text-gray-700 mb-4">
      Create an Account
     </h2>
-    <p className='text-gray-400 font-semibold'>Register with ZapShift</p>
+    <p className='text-gray-400 font-semibold'>Register with CityCare</p>
 
     {/* Name */}
     <div className="flex flex-col">

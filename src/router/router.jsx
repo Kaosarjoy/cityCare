@@ -11,6 +11,7 @@ import Register from "../Pages/Auth/Register";
 import Contact from "../Pages/Contact/Contact";
 import ForgetPassword from "../Pages/Auth/ForgetPassword";
 import PrivateRouter from "./PrivateRoute";
+import SendIssue from "../Pages/SendIssue/SendIssue";
 
 export const router = createBrowserRouter(
 [
@@ -28,9 +29,18 @@ export const router = createBrowserRouter(
            element:<PrivateRouter>
             <Service></Service>
            </PrivateRouter>
-           },{
+           },
+           {
+            path:'/sendIssue',
+          element:<PrivateRouter>
+            <SendIssue></SendIssue>
+          </PrivateRouter>
+           },
+           {
             path:'coverage',
-            Component:Coverage,
+            element:<PrivateRouter>
+              <Coverage></Coverage>
+            </PrivateRouter>,
             loader:()=>fetch('/map.json').then(res=>res.json())
            },
            {

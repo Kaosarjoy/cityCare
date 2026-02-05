@@ -5,10 +5,12 @@ import whiteImg from '../../assets/white.jpg';
 import useAuth from '../../hooks/UseAuth';
 import Register from '../Auth/Register';
 import Swal from 'sweetalert2';
+import useAxios from '../../hooks/Useaxios';
 const Login = () => {
   const { LoginUser, googleSignIn } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosSecure = useAxios();
 
   const {
     register,
@@ -16,33 +18,52 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
- const handleLogin = (data) => {
+const handleLogin = (data) => {
+  // 1️ Firebase / Auth login
   LoginUser(data.email, data.password)
     .then(() => {
-
-      //  LOGIN SUCCESS ALERT
-      Swal.fire({
-        icon: 'success',
-        title: 'Login Successful!',
-        text: 'ZapShift এ স্বাগতম 🔥',
-        confirmButtonColor: '#3085d6',
-      }).then(() => {
-        //  alert এর পর navigate
-        navigate(location?.state || '/');
-      });
-
+      // 2️ Backend-এ user আছে কিনা চেক
+      return axiosSecure.get(`/users?searchText=${data.email}`);
+    })
+    .then((res) => {
+      // 3️ User পাওয়া গেলে
+      if (res.data.length > 0) {
+        //  LOGIN SUCCESS ALERT
+        Swal.fire({
+          icon: 'success',
+          title: 'Login Successful!',
+          text: 'Welcome to the CityCare App',
+          confirmButtonColor: '#3085d6',
+        }).then(() => {
+          // 4️ আগের route থাকলে সেখানে, না থাকলে home
+          navigate(location?.state?.from || '/');
+        });
+      } else {
+        // 5️ Database-এ user নাই
+        Swal.fire({
+          icon: 'error',
+          title: 'User not found',
+          text: 'that email not found ',
+        });
+      }
     })
     .catch((error) => {
+      // 6️ Login বা API যেকোনো error
+      console.log(error.message);
 
-      //  LOGIN ERROR ALERT
+
+
       Swal.fire({
         icon: 'error',
         title: 'Login Failed',
         text: error.message,
+     
       });
+
 
     });
 };
+
 
 
   const handleGoogleSignIn = () => {
