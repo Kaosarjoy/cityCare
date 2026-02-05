@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import whiteImg from '../../assets/white.jpg';
 import useAuth from '../../hooks/UseAuth';
 import Register from '../Auth/Register';
+import Swal from 'sweetalert2';
 const Login = () => {
   const { LoginUser, googleSignIn } = useAuth();
   const location = useLocation();
@@ -15,17 +16,59 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const handleLogin = (data) => {
-    LoginUser(data.email, data.password).then(() => {
-      navigate(location.state || '/');
+ const handleLogin = (data) => {
+  LoginUser(data.email, data.password)
+    .then(() => {
+
+      //  LOGIN SUCCESS ALERT
+      Swal.fire({
+        icon: 'success',
+        title: 'Login Successful!',
+        text: 'ZapShift এ স্বাগতম 🔥',
+        confirmButtonColor: '#3085d6',
+      }).then(() => {
+        //  alert এর পর navigate
+        navigate(location?.state || '/');
+      });
+
+    })
+    .catch((error) => {
+
+      //  LOGIN ERROR ALERT
+      Swal.fire({
+        icon: 'error',
+        title: 'Login Failed',
+        text: error.message,
+      });
+
     });
-  };
+};
+
 
   const handleGoogleSignIn = () => {
-    googleSignIn().then(() => {
-      navigate(location.state || '/');
+  googleSignIn()
+    .then(() => {
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Login Successful',
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+      navigate(location?.state || '/');
+    })
+    .catch((error) => {
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Google Login Failed',
+        text: error.message,
+      });
+
     });
-  };
+};
+
 
   return (
     <div

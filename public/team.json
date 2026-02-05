@@ -54,5 +54,12 @@
     "role": "Community & Support Manager",
     "bio": "Acts as the bridge between citizens and the platform, ensuring feedback-driven improvements.",
     "image": "https://i.ibb.co.com/Y7qJ7PNR/abdul-raheem-kannath-0a-Dy-YQAQB30-unsplash.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Arafat Khan",
+    "role": " Deployment Engineer",
+    "bio": "Handles deployment, environment configuration, and keeps the system stable and scalable.",
+    "image": "https://i.ibb.co.com/k6VhMmqp/ben-sweet-2-Lowvi-VHZ-E-unsplash.jpg"
   }
 ]

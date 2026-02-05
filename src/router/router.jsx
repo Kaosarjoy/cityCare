@@ -8,6 +8,7 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import AuthLayout from "../LayOut/AuthLayout";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
+import Contact from "../Pages/Contact/Contact";
 
 export const router = createBrowserRouter(
 [
@@ -36,6 +37,10 @@ export const router = createBrowserRouter(
             path:"aboutUs",
             Component:AboutUs,
             loader:()=>fetch('/team.json').then(res=>res.json())
+           },
+           {
+            path:"contact",
+            Component:Contact
            }
            
         ]

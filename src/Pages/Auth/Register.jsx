@@ -3,71 +3,110 @@ import { useForm } from 'react-hook-form';
 import { NavLink, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../hooks/UseAuth';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 const Register = () => {
         
-  const { registerUser, googleSignIn,updateUserProfile} = useAuth();
-  const location=useLocation();
-  const navigate =useNavigate();
- // const axiosSecure = useAxios();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  // AuthProvider theki niya aslam
+const { registerUser, googleSignIn, updateUserProfile } = useAuth();
 
+const location = useLocation();
+const navigate = useNavigate();
+
+// react-hook-form setup
+const {
+  register,
+  handleSubmit,
+  formState: { errors },
+} = useForm();
+
+
+// ================= REGISTER =================
 const handleRegister = (data) => {
   const profileImage = data.photo[0];
 
+  // 1️ User create
   registerUser(data.email, data.password)
     .then(() => {
-     
+
+      // 2️ Image upload prepare
       const formData = new FormData();
       formData.append('image', profileImage);
 
-      const image_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_API}`;
+      const image_API_URL =
+        `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_API}`;
 
+      // 3️ Upload image
       axios.post(image_API_URL, formData)
         .then((res) => {
           const photoURL = res.data.data.display_url;
-         // console.log(res.data.data.display_url); 
-          
-         //Create User in the Database 
-        //   const userInfo = {
-        //     email : data.email,
-        //     displayName : data.name,
-        //     photoURL: photoURL,
-        //   }
-        //   axiosSecure.post('/users',userInfo)
-        //   .then((res)=>{
-        //     if(res.data.insertedId){
-        //       console.log("users was created")
-        //     }
-        //   })
+
+          // 4️ Profile update data
           const profile = {
             displayName: data.name,
             photoURL: photoURL,
           };
 
+          // 5️ Update Firebase profile
           updateUserProfile(profile)
             .then(() => {
-             // console.log('profile updated with image');
+
+              //  SUCCESS ALERT
+              Swal.fire({
+                icon: 'success',
+                title: 'Account Created!',
+                text: 'ZapShift এ স্বাগতম 🔥',
+                confirmButtonColor: '#3085d6',
+              }).then(() => {
+                // navigate
+                navigate(location?.state || '/');
+              });
+
             });
-        });
-         navigate(location?.state || '/');
+      
+          });
     })
-    .catch((error) => console.log(error.message));
+    .catch((error) => {
+
+      // ERROR ALERT
+      Swal.fire({
+        icon: 'error',
+        title: 'Registration Failed',
+        text: error.message,
+      });
+
+    });
 };
 
+
+
+// ================= GOOGLE LOGIN =================
 const handleGoogleSignIn = () => {
-    googleSignIn()
-      .then(() => {
-        navigate(location?.state || '/');
-       //console.log(result.user)
-      })
-      .catch((error) => console.log(error.message));
-  };
+  googleSignIn()
+    .then(() => {
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Login Successful',
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+      navigate(location?.state || '/');
+    })
+    .catch((error) => {
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Google Login Failed',
+        text: error.message,
+      });
+
+    });
+};
+
+
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4 sm:px-6 md:px-8 mx-auto">
