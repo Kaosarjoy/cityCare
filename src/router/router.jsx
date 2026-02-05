@@ -9,6 +9,8 @@ import AuthLayout from "../LayOut/AuthLayout";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import Contact from "../Pages/Contact/Contact";
+import ForgetPassword from "../Pages/Auth/ForgetPassword";
+import PrivateRouter from "./PrivateRoute";
 
 export const router = createBrowserRouter(
 [
@@ -23,7 +25,9 @@ export const router = createBrowserRouter(
            },
            {
             path:'services',
-            Component:Service
+           element:<PrivateRouter>
+            <Service></Service>
+           </PrivateRouter>
            },{
             path:'coverage',
             Component:Coverage,
@@ -58,6 +62,7 @@ export const router = createBrowserRouter(
       },
       {
         path:'/forget-password',
+        Component:ForgetPassword
         
       }
     ]
