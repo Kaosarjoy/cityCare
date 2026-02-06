@@ -43,12 +43,25 @@ const Reviews = ({ reviewPromise }) => {
           modifier: 1,
           slideShadows: true, // True/False kora jai
         }}
+         breakpoints={{
+    0: {
+      slidesPerView: 1, // mobile
+    },
+    640: {
+      slidesPerView: 1, // small tablet
+    },
+    768: {
+      slidesPerView: 2, // tablet
+    },
+    1024: {
+      slidesPerView: 3, // desktop
+    },
+  }}
         pagination={{ clickable: true }}
         modules={[EffectCoverflow, Pagination, Autoplay]}
         className="mySwiper"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6"
->
+        
           {reviews.map((review) => (
           <SwiperSlide
             key={review.id}
@@ -57,7 +70,7 @@ const Reviews = ({ reviewPromise }) => {
             <ReviewCard review={review} />
           </SwiperSlide>
         ))}
-        </div>
+        
       </Swiper>
     </div>
   );
