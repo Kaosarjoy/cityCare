@@ -70,6 +70,7 @@ const Staf = () => {
         <h1 className="text-2xl font-bold text-[#003d3d] mb-6">
           Add New Staff
         </h1>
+        
 
         <form onSubmit={handleSubmit(handleAddStaf)} className="space-y-5">
           {/* Staff Name */}
@@ -216,7 +217,7 @@ const Staf = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-[#c5e76d] text-[#003d3d] font-bold py-2 rounded-lg hover:bg-[#b5d65d]"
+            className="w-full btn btn-primary  font-bold py-2 rounded-lg hover:btn-secondary"
           >
             Add Staff
           </button>

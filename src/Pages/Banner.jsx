@@ -32,11 +32,14 @@ const Banner = () => {
               className="w-full h-75 sm:h-80 lg:h-85 object-cover"
             />
             {/* Optional overlay text */}
-            <div className="absolute inset-0 bg-black/25 flex items-center justify-center">
+            <div className="absolute inset-0 bg-black/25 flex items-center flex-col justify-center">
               <h2 className="text-white text-xl md:text-3xl font-bold">
                 CityCare Banner {i + 1}
               </h2>
-            
+              <p className="text-white text-ml md:text-l font-bold ">
+                Urban cleanliness is far more than a visual preference;  it is a critical pillar of public health and safety. <br /> Accumulating waste in metropolitan areas acts as a breeding ground for pathogens, increases environmental toxicity,
+                 and creates avoidable safety hazards. <br /> A clean city isn't just beautiful—it's resilient.
+              </p>
             </div>
           </div>
         ))}

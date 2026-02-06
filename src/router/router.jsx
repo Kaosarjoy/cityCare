@@ -13,6 +13,7 @@ import ForgetPassword from "../Pages/Auth/ForgetPassword";
 import PrivateRouter from "./PrivateRoute";
 import SendIssue from "../Pages/SendIssue/SendIssue";
 import Staf from "../Pages/Staf/Staf";
+import Error from "../Error/Error";
 
 export const router = createBrowserRouter(
 [
@@ -85,6 +86,9 @@ export const router = createBrowserRouter(
         
       }
     ]
-  },
+  },{
+    path:'/*',
+    Component:Error
+  }
 ]
 )
