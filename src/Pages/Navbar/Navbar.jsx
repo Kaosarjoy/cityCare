@@ -22,7 +22,7 @@ const Navbar = () => {
       <li><NavLink to="/sendIssue">Send Issue</NavLink></li>
       <li><NavLink to="/allissue">All Issues</NavLink></li>
       <li><NavLink to="/blog">Blog</NavLink></li>
-      <li><NavLink to="/contact">Contact</NavLink></li>
+      <li><NavLink to="/beStaf">Be a Staf</NavLink></li>
       <li><NavLink to="/coverage">Coverage</NavLink></li>
     </>
   );

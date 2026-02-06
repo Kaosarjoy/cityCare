@@ -47,7 +47,9 @@ const Reviews = ({ reviewPromise }) => {
         modules={[EffectCoverflow, Pagination, Autoplay]}
         className="mySwiper"
       >
-        {reviews.map((review) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6"
+>
+          {reviews.map((review) => (
           <SwiperSlide
             key={review.id}
             className="flex justify-center transition-transform duration-500"
@@ -55,9 +57,9 @@ const Reviews = ({ reviewPromise }) => {
             <ReviewCard review={review} />
           </SwiperSlide>
         ))}
+        </div>
       </Swiper>
     </div>
   );
 };
-
 export default Reviews;

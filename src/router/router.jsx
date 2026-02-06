@@ -12,6 +12,7 @@ import Contact from "../Pages/Contact/Contact";
 import ForgetPassword from "../Pages/Auth/ForgetPassword";
 import PrivateRouter from "./PrivateRoute";
 import SendIssue from "../Pages/SendIssue/SendIssue";
+import Staf from "../Pages/Staf/Staf";
 
 export const router = createBrowserRouter(
 [
@@ -34,7 +35,8 @@ export const router = createBrowserRouter(
             path:'/sendIssue',
           element:<PrivateRouter>
             <SendIssue></SendIssue>
-          </PrivateRouter>
+          </PrivateRouter>,
+           loader:()=>fetch('/map.json').then(res=>res.json())
            },
            {
             path:'coverage',
@@ -42,6 +44,13 @@ export const router = createBrowserRouter(
               <Coverage></Coverage>
             </PrivateRouter>,
             loader:()=>fetch('/map.json').then(res=>res.json())
+           },
+           {
+            path:'beStaf',
+            element:<PrivateRouter>
+              <Staf></Staf>
+            </PrivateRouter>,
+            loader:()=>fetch('/map.json').then((res)=>res.json())
            },
            {
             path:'blog',
