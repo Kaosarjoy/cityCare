@@ -50,7 +50,7 @@ CityCare is a web application designed to empower citizens to report, track, and
 
 ## 🚀 Getting Started
 
-1. Clone the repository: git clone https://https://github.com/Kaosarjoy/cityCare
+1. Clone the repository: git clone https://github.com/Kaosarjoy/cityCare 
 2. cd CityCare
 3. npm install
 4. npm run dev
