@@ -14,6 +14,7 @@ import PrivateRouter from "./PrivateRoute";
 import SendIssue from "../Pages/SendIssue/SendIssue";
 import Staf from "../Pages/Staf/Staf";
 import Error from "../Error/Error";
+import DashBoardLayout from "../LayOut/DashBoardLayout";
 
 export const router = createBrowserRouter(
 [
@@ -86,7 +87,19 @@ export const router = createBrowserRouter(
         
       }
     ]
-  },{
+  },
+  {
+    path:'/dashboard',
+    element:<PrivateRouter>
+      <DashBoardLayout></DashBoardLayout>
+    </PrivateRouter>,
+    children:[
+      {
+        
+      }
+    ]
+  },
+  {
     path:'/*',
     Component:Error
   }

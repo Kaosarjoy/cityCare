@@ -37,8 +37,7 @@ const Banner = () => {
                 CityCare Banner {i + 1}
               </h2>
               <p className="text-white text-ml md:text-l font-bold ">
-                Urban cleanliness is far more than a visual preference;  it is a critical pillar of public health and safety. <br /> Accumulating waste in metropolitan areas acts as a breeding ground for pathogens, increases environmental toxicity,
-                 and creates avoidable safety hazards. <br /> A clean city isn't just beautiful—it's resilient.
+                Urban cleanliness is far more than a visual preference;  it is a critical pillar of public health and safety. 
               </p>
             </div>
           </div>
