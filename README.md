@@ -1,16 +1,60 @@
-# React + Vite
+# CityCare - Civic Service Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CityCare is a web application designed to empower citizens to report, track, and resolve urban issues such as road damage, waste management, drainage problems, and streetlight maintenance. The platform connects citizens with local authorities to ensure faster, transparent, and efficient problem-solving in urban areas.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌟 Key Features
 
-## React Compiler
+1. **User-Friendly Dashboard**  
+   Citizens can easily submit issues and track the status of their requests in real-time.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. **Service Coverage Map**  
+   Interactive map showing all service areas and active service centers for quick reference.
 
-## Expanding the ESLint configuration
+3. **Multi-Issue Reporting**  
+   Users can report multiple types of urban problems such as road damage, garbage accumulation, or drainage blockages.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+4. **Real-Time Updates**  
+   Citizens get instant updates when their reported issue is addressed or resolved.
+
+5. **Blog & Awareness Section**  
+   Provides tips, guides, and educational articles about urban cleanliness and safety.
+
+6. **Newsletter Subscription**  
+   Stay informed about new services, updates, and important announcements.
+
+7. **Admin & Authority Panel**  
+   Local authorities can manage reported issues, assign tasks, and monitor progress efficiently.
+
+8. **Mobile-First Responsive Design**  
+   Fully responsive layout ensures seamless usage on mobile devices and tablets.
+
+9. **Dynamic Image & Content Loader**  
+   Images, service areas, and updates are dynamically loaded for flexibility and easy maintenance.
+
+10. **Secure & Fast Authentication**  
+    User login and data submission are secure, with fast response times using JWT and Firebase/Express backend.
+
+---
+
+## 🛠 Tech Stack
+
+- **Frontend:** React, Tailwind CSS, DaisyUI, React Router  
+- **Backend:** Node.js, Express, MongoDB (or Firebase)  
+- **Maps:** Leaflet.js for coverage visualization  
+- **Notifications:** SweetAlert2 / Toast notifications  
+- **Deployment:** Vite for frontend bundling, Netlify / Vercel / Heroku for hosting  
+
+---
+
+## 🚀 Getting Started
+
+1. Clone the repository: git clone https://github.com/Kaosarjoy/cityCare 
+2. cd CityCare
+3. npm install
+4. npm run dev
+5. Web Site Link : 
+
+
+
