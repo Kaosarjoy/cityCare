@@ -14,9 +14,10 @@ const Home = () => {
     return (
         <div className='mx-auto mt-3  '>
             <Banner></Banner>
+            <Resolved></Resolved>
             <HowItWorks></HowItWorks>
             <AboutUs></AboutUs>
-            <Resolved></Resolved>
+            
             <Reviews reviewPromise={reviewPromise}></Reviews>
             <FAQ></FAQ>
             
@@ -27,15 +28,8 @@ const Home = () => {
 export default Home;
 
 
-{/* বর্ণনা (Bangla Translation)
+{/* 
 
-
-
-Features Section:
-
-অ্যাপ্লিকেশন ফিচারগুলো দেখাবে
-
-How It Works Section
 
 
 

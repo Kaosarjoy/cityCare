@@ -11,10 +11,14 @@ import Register from "../Pages/Auth/Register";
 import Contact from "../Pages/Contact/Contact";
 import ForgetPassword from "../Pages/Auth/ForgetPassword";
 import PrivateRouter from "./PrivateRoute";
+import AdminRoute from "./AdminRoute"
 import SendIssue from "../Pages/SendIssue/SendIssue";
 import Staf from "../Pages/Staf/Staf";
 import Error from "../Error/Error";
-import DashBoardLayout from "../LayOut/DashBoardLayout";
+import MyIssue from "../component/Dashboard/MyIssue";
+import StaffList from "../component/Dashboard/StaffList";
+import AllIssues from "../component/Dashboard/AllIssues";
+import DashboardLayout from "../LayOut/DashBoardLayout";
 
 export const router = createBrowserRouter(
 [
@@ -25,20 +29,20 @@ export const router = createBrowserRouter(
            {
              index : true,
              Component:Home,
-            loader:()=>fetch('/team.json').then(res=>res.json())
+             loader:()=>fetch('/team.json').then(res=>res.json())
            },
            {
             path:'services',
-           element:<PrivateRouter>
-            <Service></Service>
-           </PrivateRouter>
+            element:<PrivateRouter>
+                <Service></Service>
+            </PrivateRouter>
            },
            {
-            path:'/sendIssue',
+            path:'sendIssue', // 1. slash sorano holo
           element:<PrivateRouter>
             <SendIssue></SendIssue>
           </PrivateRouter>,
-           loader:()=>fetch('/map.json').then(res=>res.json())
+            loader:()=>fetch('/map.json').then(res=>res.json())
            },
            {
             path:'coverage',
@@ -71,18 +75,18 @@ export const router = createBrowserRouter(
         ]
     },
     {
-    path:'/',
+    path:'/auth', // 2. Auth routes er jonno alada prefix deya holo
     Component:AuthLayout,
     children:[
       {
-        path:'/login',
+        path:'login',
         Component:Login
       },{
-        path:'/register',
+        path:'register',
         Component:Register
       },
       {
-        path:'/forget-password',
+        path:'forget-password',
         Component:ForgetPassword
         
       }
@@ -91,16 +95,31 @@ export const router = createBrowserRouter(
   {
     path:'/dashboard',
     element:<PrivateRouter>
-      <DashBoardLayout></DashBoardLayout>
+      <DashboardLayout></DashboardLayout>
     </PrivateRouter>,
-    children:[
+    children:[{
+      index:true , 
+      element:<AdminRoute>
+          <MyIssue></MyIssue>
+        </AdminRoute>
+    },
       {
-        
+        path:'staff-list',
+        element:<AdminRoute>
+          <StaffList></StaffList>
+        </AdminRoute>
+      },
+      {
+        path:'all-issues',
+        element:<AdminRoute>
+          <AllIssues></AllIssues>
+        </AdminRoute>
       }
+      // Dashboard Home eo add korte paro
     ]
   },
   {
-    path:'/*',
+    path:'*', 
     Component:Error
   }
 ]
