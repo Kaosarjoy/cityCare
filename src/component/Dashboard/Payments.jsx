@@ -7,7 +7,7 @@ const Payments = () => {
   const axiosSecure = useAxios(); // protected axios instance
 
   // Fetch payments from server (v5 compliant)
-  const { data: payments = [], isLoading, refetch } = useQuery({
+  const { data: payments = [], isLoading  } = useQuery({
     queryKey: ["payments"],
     queryFn: async () => {
       const res = await axiosSecure.get("/payments");

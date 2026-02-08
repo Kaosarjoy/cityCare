@@ -17,11 +17,14 @@ import Staf from "../Pages/Staf/Staf";
 import Error from "../Error/Error";
 import StaffList from "../component/Dashboard/StaffList";
 import AllIssues from "../component/Dashboard/AllIssues";
-import DashboardLayout from "../LayOut/DashBoardLayout";
+import { DashboardLayout } from "../LayOut/DashBoardLayout";
 import MyIssue from "../component/Dashboard/MyIssue";
 import DashboardHome from "../component/Dashboard/DashboardHome";
 import ManageUsers from "../component/Dashboard/ManageUsers";
 import Payments from "../component/Dashboard/Payments";
+import IssueDetails from "../component/Dashboard/IssueDetails";
+import Profile from "../component/Dashboard/Profile";
+import CitizenRoute from "./CitizenRoute";
 
 export const router = createBrowserRouter(
 [
@@ -73,7 +76,13 @@ export const router = createBrowserRouter(
            {
             path:"contact",
             Component:Contact
-           }
+           },
+           {
+  path: "/issue/:id",
+  element: <PrivateRouter>
+    <IssueDetails></IssueDetails>
+    </PrivateRouter>,
+}
            
         ]
     },
@@ -91,8 +100,8 @@ export const router = createBrowserRouter(
       {
         path:'forget-password',
         Component:ForgetPassword
-        
       }
+      
     ]
   },
   {
@@ -126,7 +135,12 @@ export const router = createBrowserRouter(
   element:<AdminRoute>
     <Payments></Payments>
   </AdminRoute>
+},
+{
+  path:'profile',
+  element:<Profile></Profile>
 }
+
   ]
 },
   {

@@ -1,46 +1,46 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
-
 import { useNavigate } from 'react-router';
 import useAuth from './UseAuth';
+import { useEffect } from 'react';
 
-const axiosSecure = axios.create({
-    baseURL:'http://localhost:3000'
-})
 const useAxios = () => {
-    const navigate = useNavigate();
-    const {user,signOutUser} = useAuth();
-    useEffect(()=>{
-    const reqInterceptor = axiosSecure.interceptors.request.use(function (config) {
-        config.headers.Authorization = `Joy ${user?.accessToken}`
-    return config;
-  })
+  const { user, signOutUser } = useAuth();
+  const navigate = useNavigate();
 
-  //interceptor response 
-  const resInterceptor = axiosSecure.interceptors.response.use((response)=>{
-    return response
-  },(error)=>{
-    console.log(error);
+  const axiosSecure = axios.create({
+    baseURL: 'http://localhost:3000',
+  });
 
-    const statusCode = error.status ;
-    if(statusCode == 403 || statusCode == 401){
-        return signOutUser()
-        .then(()=>{
-            navigate('/login')
-        })
-    }
-    return Promise.reject(error)
-  })
+  useEffect(() => {
+    const reqInterceptor = axiosSecure.interceptors.request.use(
+      async (config) => {
+        if (user) {
+          const token = await user.getIdToken(); // Firebase থেকে token নাও
+          config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+      },
+      (error) => Promise.reject(error)
+    );
 
+    const resInterceptor = axiosSecure.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        const statusCode = error.response?.status;
+        if (statusCode === 401 || statusCode === 403) {
+          signOutUser().then(() => navigate('/login'));
+        }
+        return Promise.reject(error);
+      }
+    );
 
+    return () => {
+      axiosSecure.interceptors.request.eject(reqInterceptor);
+      axiosSecure.interceptors.response.eject(resInterceptor);
+    };
+  }, [user, signOutUser, navigate]);
 
-  return ()=>{
-    axiosSecure.interceptors.request.eject(reqInterceptor);
-    axiosSecure.interceptors.response.eject(resInterceptor);
-  }
-    },[user , signOutUser , navigate])
-    return axiosSecure ;
-    
+  return axiosSecure;
 };
 
 export default useAxios;
