@@ -1,33 +1,42 @@
 import React from "react";
-import { Link, NavLink, Outlet } from "react-router";
+import { NavLink, Outlet } from "react-router";
 import logoImg from "../assets/logo.png";
+import useAuth from "../hooks/UseAuth";
+import useAxios from "../hooks/Useaxios";
+import { useQuery } from "@tanstack/react-query";
 
 const DashboardLayout = () => {
+  const { user } = useAuth();
+  const axiosSecure = useAxios();
+
+  // 👉 user role fetch
+  const { data: userInfo = {} } = useQuery({
+    queryKey: ["user-role", user?.email],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users/${user.email}/role`);
+      return res.data;
+    },
+  });
+
+  const role = userInfo?.role; // admin | staff | user
+
   return (
-    <div className="drawer lg:drawer-open  min-h-screen max-w-7xl mx-auto bg-accent text-black">
+    <div className="drawer lg:drawer-open min-h-screen max-w-7xl mx-auto bg-accent text-black">
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
 
       {/* MAIN CONTENT */}
       <div className="drawer-content flex flex-col bg-white">
-        {/* TOP NAVBAR */}
+        {/* TOP NAV */}
         <nav className="navbar bg-white border-b px-4">
           <label
             htmlFor="dashboard-drawer"
             className="btn btn-square btn-ghost lg:hidden"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="size-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+            <svg xmlns="http://www.w3.org/2000/svg" className="size-5" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </label>
 
@@ -53,39 +62,70 @@ const DashboardLayout = () => {
 
           {/* MENU */}
           <ul className="menu p-4 gap-1 flex-1">
+
+            {/* Common for all */}
             <li>
-              <NavLink to="/" >
-                Home
-              </NavLink>
+              <NavLink to="/">Home</NavLink>
             </li>
 
-            <li>
-              <NavLink to="/dashboard" >
-                Dashboard Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard/all-issues" >
-                All Issues
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard/add-staff">
-                Add Staff
-              </NavLink>
-            </li>
+            {/* 👤 Citizen */}
+            {role === "user" && (
+              <>
+                <li>
+                  <NavLink to="/dashboard/myissue">
+                    My Issues
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/sendIssue">
+                    Report Issue
+                  </NavLink>
+                </li>
+              </>
+            )}
 
-            <li>
-              <NavLink to="/dashboard/staff-list">
-                Staff List
-              </NavLink>
-            </li>
+            {/* 🧑‍🔧 Staff */}
+            {role === "staff" && (
+              <>
+                <li>
+                  <NavLink to="/dashboard/assigned-issues">
+                    Assigned Issues
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/profile">
+                    My Profile
+                  </NavLink>
+                </li>
+              </>
+            )}
 
-            <li>
-              <NavLink to="/dashboard/myissue">
-                My Issues
-              </NavLink>
-            </li>
+            {/* 👑 Admin */}
+            {role === "admin" && (
+              <>
+                <li>
+                  <NavLink to="/dashboard/all-issues">
+                    All Issues
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/staff-list">
+                    Staff List
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/manage-users">
+                    Manage Users
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/payments">
+                    Payments
+                  </NavLink>
+                </li>
+              </>
+            )}
+
           </ul>
         </aside>
       </div>

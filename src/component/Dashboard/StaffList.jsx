@@ -6,15 +6,16 @@ import Swal from 'sweetalert2';
 const StaffList = () => {
     const axiosSecure = useAxios();
 
-    // Backend theke staff data ana
+    // Backend থেকে staff data fetch
     const { data: staffList = [], isLoading, refetch } = useQuery({
         queryKey: ['staffList'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/staffs');
+            const res = await axiosSecure.get('/staffs'); // URL ঠিক করা
             return res.data;
         }
     });
 
+    // Delete staff function
     const handleDelete = (id) => {
         Swal.fire({
             title: 'Are you sure?',
@@ -26,9 +27,14 @@ const StaffList = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                await axiosSecure.delete(`/staff/${id}`);
-                refetch();
-                Swal.fire('Deleted!', 'Staff has been deleted.', 'success');
+                try {
+                    await axiosSecure.delete(`/staffs/${id}`); // URL ঠিক করা
+                    refetch();
+                    Swal.fire('Deleted!', 'Staff has been deleted.', 'success');
+                } catch (err) {
+                    console.error(err);
+                    Swal.fire('Error!', 'Failed to delete staff.', 'error');
+                }
             }
         });
     };
@@ -59,7 +65,12 @@ const StaffList = () => {
                                 <td>{staff.stafRegion}</td>
                                 <td>{staff.stafDistrict}</td>
                                 <td>
-                                    <button onClick={() => handleDelete(staff._id)} className="btn btn-ghost btn-xs text-red-500">Delete</button>
+                                    <button 
+                                        onClick={() => handleDelete(staff._id)} 
+                                        className="btn btn-ghost btn-xs text-red-500"
+                                    >
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
                         ))}

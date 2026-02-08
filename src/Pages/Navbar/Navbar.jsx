@@ -84,10 +84,10 @@ const Navbar = () => {
         </>
          : <>
         
-        <NavLink to="/login" className="btn btn-primary btn-sm">
+        <NavLink to="/auth/login" className="btn btn-primary btn-sm">
           Log In
         </NavLink>
-        <NavLink to="/register" className='btn btn-secondary btn-sm '>
+        <NavLink to="/auth/register" className='btn btn-secondary btn-sm '>
         Register
         </NavLink></>
        }

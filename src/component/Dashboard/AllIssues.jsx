@@ -44,14 +44,14 @@ const AllIssues = () => {
               )}
             </div>
 
-            <p>📍 {issue.location?.district}</p>
+            <p> {issue.location?.district}</p>
 
             <div className="flex justify-between items-center mt-3">
               <button
                 onClick={() => handleUpvote(issue._id, issue.reporterEmail)}
                 className="btn btn-sm"
               >
-                👍 {issue.upvotes}
+                 {issue.upvotes}
               </button>
 
               <Link
@@ -69,3 +69,4 @@ const AllIssues = () => {
 };
 
 export default AllIssues;
+//https://docs.google.com/document/d/1IBsw4txo6JSav_MJNBsv5_spB0emiYVK/edit

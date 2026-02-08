@@ -15,10 +15,12 @@ import AdminRoute from "./AdminRoute"
 import SendIssue from "../Pages/SendIssue/SendIssue";
 import Staf from "../Pages/Staf/Staf";
 import Error from "../Error/Error";
-import MyIssue from "../component/Dashboard/MyIssue";
 import StaffList from "../component/Dashboard/StaffList";
 import AllIssues from "../component/Dashboard/AllIssues";
 import DashboardLayout from "../LayOut/DashBoardLayout";
+import MyIssue from "../component/Dashboard/MyIssue";
+import DashboardHome from "../component/Dashboard/DashboardHome";
+import ManageUsers from "../component/Dashboard/ManageUsers";
 
 export const router = createBrowserRouter(
 [
@@ -38,7 +40,7 @@ export const router = createBrowserRouter(
             </PrivateRouter>
            },
            {
-            path:'sendIssue', // 1. slash sorano holo
+            path:'sendIssue', 
           element:<PrivateRouter>
             <SendIssue></SendIssue>
           </PrivateRouter>,
@@ -75,7 +77,7 @@ export const router = createBrowserRouter(
         ]
     },
     {
-    path:'/auth', // 2. Auth routes er jonno alada prefix deya holo
+    path:'/auth', // 2. Auth routes er jonno alada code
     Component:AuthLayout,
     children:[
       {
@@ -93,34 +95,39 @@ export const router = createBrowserRouter(
     ]
   },
   {
-    path:'/dashboard',
-    element:<PrivateRouter>
-      <DashboardLayout></DashboardLayout>
-    </PrivateRouter>,
-    children:[{
-      index:true , 
-      element:<AdminRoute>
-          <MyIssue></MyIssue>
-        </AdminRoute>
+  path:'/dashboard',
+  element:<PrivateRouter>
+    <DashboardLayout />
+  </PrivateRouter>,
+  children:[
+    {
+      index:true,
+      element:<DashboardHome />
     },
-      {
-        path:'staff-list',
-        element:<AdminRoute>
-          <StaffList></StaffList>
-        </AdminRoute>
-      },
-      {
-        path:'all-issues',
-        element:<AdminRoute>
-          <AllIssues></AllIssues>
-        </AdminRoute>
-      }
-      // Dashboard Home eo add korte paro
-    ]
-  },
+    {
+      path:'myissue',
+      element:<MyIssue />
+    },
+    {
+      path:'all-issues',
+      element:<AdminRoute><AllIssues /></AdminRoute>
+    },
+    {
+      path:'staff-list',
+      element:<AdminRoute><StaffList /></AdminRoute>
+    },{
+  path: "manage-users",
+  element: <AdminRoute>
+    <ManageUsers></ManageUsers>
+    </AdminRoute>
+}
+  ]
+},
   {
     path:'*', 
     Component:Error
   }
 ]
 )
+//kaosarjoy@gmail.com
+//@Joy123

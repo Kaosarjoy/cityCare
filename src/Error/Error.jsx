@@ -1,34 +1,51 @@
 import React from "react";
-import errorImg from "../assets/error.png"; // 1080px image prefer
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router"; 
 
 const Error = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
-      {/* Image Section */}
-      <div className="relative w-full max-w-4xl">
-        <img
-          src={errorImg}
-          alt="Error Page"
-          className="w-full h-80 sm:h-96 md:height-[500px] lg:height-[550px] object-cover rounded-xl shadow-lg"
-        />
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center p-4 rounded-xl">
-          <h1 className="text-white text-4xl sm:text-5xl font-extrabold mb-2">
-            404
-          </h1>
-          <p className="text-white text-lg sm:text-2xl mb-6 text-center">
-            Oops! Page not found. Looks like you’re lost in the city 
-          </p>
-          <button
-            onClick={() => navigate("/")}
-            className="px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow hover:bg-secondary transition"
-          >
-            Go Home
-          </button>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <div className="max-w-lg w-full text-center bg-white p-10 rounded-3xl shadow-2xl shadow-gray-200 border border-gray-100">
+        
+        {/* Error Illustration Icon */}
+        <div className="flex justify-center mb-8">
+          <div className="bg-red-100 p-6 rounded-full">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-16 w-16 text-red-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
         </div>
+
+        {/* Text Section */}
+        <h1 className="text-9xl font-extrabold text-gray-900 tracking-tight">
+          4<span className="text-red-500">0</span>4
+        </h1>
+        <h2 className="text-3xl font-bold text-gray-800 mt-4 mb-2">
+          Page Not Found
+        </h2>
+        <p className="text-gray-600 text-lg mb-8">
+          Oops! Looks like you’re lost in the city. The page you are looking for doesn't exist or has been moved.
+        </p>
+
+        {/* Button */}
+        <button
+          onClick={() => navigate("/")}
+          className="px-8 py-4 bg-gray-900 text-white font-semibold rounded-xl shadow-lg hover:bg-gray-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1"
+        >
+          Back to Home
+        </button>
       </div>
     </div>
   );
