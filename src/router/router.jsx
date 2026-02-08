@@ -21,6 +21,7 @@ import DashboardLayout from "../LayOut/DashBoardLayout";
 import MyIssue from "../component/Dashboard/MyIssue";
 import DashboardHome from "../component/Dashboard/DashboardHome";
 import ManageUsers from "../component/Dashboard/ManageUsers";
+import Payments from "../component/Dashboard/Payments";
 
 export const router = createBrowserRouter(
 [
@@ -120,6 +121,11 @@ export const router = createBrowserRouter(
   element: <AdminRoute>
     <ManageUsers></ManageUsers>
     </AdminRoute>
+},{
+  path:'payments',
+  element:<AdminRoute>
+    <Payments></Payments>
+  </AdminRoute>
 }
   ]
 },
