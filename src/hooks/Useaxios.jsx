@@ -17,6 +17,7 @@ const useAxios = () => {
         if (user) {
           const token = await user.getIdToken(); // Firebase থেকে token নাও
           config.headers.Authorization = `Bearer ${token}`;
+          //config.headers.Authorization = `Bearer ${user.accessToken}`;
         }
         return config;
       },

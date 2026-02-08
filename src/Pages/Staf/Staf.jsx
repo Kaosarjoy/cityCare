@@ -5,15 +5,18 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/UseAuth";
 import useAxios from "../../hooks/Useaxios";
 
-
 const Staf = () => {
-  
-  const { user } = useAuth();
-  const axiosSecure = useAxios();
-  const serviceCenter = useLoaderData();
+  const { user } = useAuth(); // logged-in admin
+  const axiosSecure = useAxios(); // Axios with interceptor
+  const serviceCenter = useLoaderData(); // loaded regions/districts
   const navigate = useNavigate();
 
-  const { register, handleSubmit, formState: { errors }, control } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm();
 
   // Unique regions
   const regions = [...new Set(serviceCenter.map((c) => c.region))];
@@ -31,15 +34,29 @@ const Staf = () => {
 
   // Submit handler
   const handleAddStaf = async (data) => {
+    // Check if logged-in user is admin
+    if (user?.role !== "admin") {
+      return Swal.fire({
+        icon: "error",
+        title: "Unauthorized",
+        text: "Only admin can add staff.",
+      });
+    }
+
     const stafData = {
-      ...data,
+      name: data.stafName,
+      email: data.stafEmail,
+      phone: data.stafPhone,
+      dateOfBirth: data.stafDateOfBirth,
+      nid: data.stafNID,
+      region: data.stafRegion,
+      district: data.stafDistrict,
       role: "staff",
-      createdBy: user?.email,
+      createdBy: user.email,
       createdAt: new Date(),
     };
 
     try {
-      // ✅ Correct endpoint
       const res = await axiosSecure.post("/staffs", stafData);
 
       if (res.data.insertedId) {
@@ -55,8 +72,8 @@ const Staf = () => {
       console.error(error);
       Swal.fire({
         icon: "error",
-        title: `Something went wrong`,
-        text: error.response?.data?.message || "Please try again later.",
+        title: "Something went wrong",
+        text: error.response?.data?.message || error.message || "Try again later.",
       });
     }
   };
@@ -112,7 +129,9 @@ const Staf = () => {
               placeholder="Enter Date of Birth"
               className="w-full p-2 border rounded-md"
             />
-            {errors.stafDateOfBirth && <p className="text-red-500 text-sm">{errors.stafDateOfBirth.message}</p>}
+            {errors.stafDateOfBirth && (
+              <p className="text-red-500 text-sm">{errors.stafDateOfBirth.message}</p>
+            )}
           </div>
 
           {/* NID */}
@@ -130,9 +149,16 @@ const Staf = () => {
           {/* Region */}
           <div>
             <label className="text-sm font-semibold text-gray-700">Select Region</label>
-            <select {...register("stafRegion", { required: "Region is required" })} className="w-full p-2 border rounded-md bg-white">
+            <select
+              {...register("stafRegion", { required: "Region is required" })}
+              className="w-full p-2 border rounded-md bg-white"
+            >
               <option value="">Select region</option>
-              {regions.map((r, i) => <option key={i} value={r}>{r}</option>)}
+              {regions.map((r, i) => (
+                <option key={i} value={r}>
+                  {r}
+                </option>
+              ))}
             </select>
             {errors.stafRegion && <p className="text-red-500 text-sm">{errors.stafRegion.message}</p>}
           </div>
@@ -140,15 +166,25 @@ const Staf = () => {
           {/* District */}
           <div>
             <label className="text-sm font-semibold text-gray-700">Select District</label>
-            <select {...register("stafDistrict", { required: "District is required" })} className="w-full p-2 border rounded-md bg-white">
+            <select
+              {...register("stafDistrict", { required: "District is required" })}
+              className="w-full p-2 border rounded-md bg-white"
+            >
               <option value="">Select district</option>
-              {districtByStaf(stafRegion).map((d, i) => <option key={i} value={d}>{d}</option>)}
+              {districtByStaf(stafRegion).map((d, i) => (
+                <option key={i} value={d}>
+                  {d}
+                </option>
+              ))}
             </select>
             {errors.stafDistrict && <p className="text-red-500 text-sm">{errors.stafDistrict.message}</p>}
           </div>
 
           {/* Submit */}
-          <button type="submit" className="w-full btn btn-primary font-bold py-2 rounded-lg hover:btn-secondary">
+          <button
+            type="submit"
+            className="w-full btn btn-primary font-bold py-2 rounded-lg hover:btn-secondary"
+          >
             Add Staff
           </button>
         </form>

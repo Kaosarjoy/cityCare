@@ -25,6 +25,7 @@ import Payments from "../component/Dashboard/Payments";
 import IssueDetails from "../component/Dashboard/IssueDetails";
 import Profile from "../component/Dashboard/Profile";
 import CitizenRoute from "./CitizenRoute";
+import AssignedIssues from "../component/Dashboard/AssignedIssues";
 
 export const router = createBrowserRouter(
 [
@@ -139,6 +140,9 @@ export const router = createBrowserRouter(
 {
   path:'profile',
   element:<Profile></Profile>
+},{
+  path:'assigned-issues',
+  element:<AssignedIssues></AssignedIssues>
 }
 
   ]
@@ -149,5 +153,10 @@ export const router = createBrowserRouter(
   }
 ]
 )
+//Citizan
 //kaosarjoy@gmail.com
 //@Joy123
+
+//Staf
+//joy5@gmail.com
+//@Joy521

@@ -1,4 +1,3 @@
-// DashboardLayout.jsx
 import React from "react";
 import { NavLink, Outlet, Navigate } from "react-router";
 import logoImg from "../assets/logo.png";
@@ -18,7 +17,7 @@ const DashboardLayout = () => {
   const axiosSecure = useAxios();
 
   // fetch user role
-  const { data: userInfo = {}, isLoading } = useQuery({
+  const { data: userInfo, isLoading } = useQuery({
     queryKey: ["user-role", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -27,8 +26,9 @@ const DashboardLayout = () => {
     },
   });
 
-  const role = userInfo?.role; // admin | staff | user
+  const role = userInfo?.role || ""; // fallback empty string to avoid undefined
 
+  // show loading until role fetched
   if (isLoading) return <div className="p-4">Loading...</div>;
 
   return (
@@ -74,21 +74,19 @@ const DashboardLayout = () => {
             </li>
 
             {/* Citizen */}
-           
-{role === "user" && (
-  <>
-    <li>
-      <NavLink to="/dashboard/myissue">My Issues</NavLink>
-    </li>
-    <li>
-      <NavLink to="/sendIssue">Report Issue</NavLink>
-    </li>
-    <li>
-      <NavLink to="/dashboard/profile">Profile</NavLink>
-    </li>
-  </>
-)}
-
+            {role === "user" && (
+              <>
+                <li>
+                  <NavLink to="/dashboard/myissue">My Issues</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/sendIssue">Report Issue</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/profile">Profile</NavLink>
+                </li>
+              </>
+            )}
 
             {/* Staff */}
             {role === "staff" && (

@@ -59,6 +59,28 @@ const ManageUsers = () => {
     });
   };
 
+  // Make user staff or remove staff
+  const handleStaffToggle = (user) => {
+    const newRole = user.role === "staff" ? "user" : "staff";
+
+    Swal.fire({
+      title: "Change Staff Status?",
+      text: `This user will become ${newRole}`,
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes, change",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .patch(`/users/${user._id}/role`, { role: newRole })
+          .then(() => {
+            refetch();
+            Swal.fire("Success", `User is now ${newRole}`, "success");
+          });
+      }
+    });
+  };
+
   if (isLoading) {
     return (
       <div className="flex justify-center mt-20">
@@ -104,16 +126,14 @@ const ManageUsers = () => {
                 <td>
                   <span
                     className={`badge ${
-                      user.status === "blocked"
-                        ? "badge-error"
-                        : "badge-info"
+                      user.status === "blocked" ? "badge-error" : "badge-info"
                     }`}
                   >
                     {user.status}
                   </span>
                 </td>
                 <td className="capitalize font-medium">{user.role}</td>
-                <td className="flex justify-center gap-2">
+                <td className="flex flex-wrap justify-center gap-2">
                   <button
                     onClick={() => handleBlockToggle(user)}
                     className={`btn btn-xs ${
@@ -123,20 +143,25 @@ const ManageUsers = () => {
                     {user.status === "blocked" ? "Unblock" : "Block"}
                   </button>
 
-                  {/* Only show role change button for normal users */}
-                  {user.role !== "admin" ? (
+                  {user.role !== "admin" && (
                     <button
                       onClick={() => handleRoleChange(user)}
-                      className="btn btn-xs btn-primary"
+                      className={`btn btn-xs ${
+                        user.role === "user" ? "btn-primary" : "btn-warning"
+                      }`}
                     >
-                      Make Admin
+                      {user.role === "user" ? "Make Admin" : "Remove Admin"}
                     </button>
-                  ) : (
+                  )}
+
+                  {user.role !== "admin" && (
                     <button
-                      onClick={() => handleRoleChange(user)}
-                      className="btn btn-xs btn-warning"
+                      onClick={() => handleStaffToggle(user)}
+                      className={`btn btn-xs ${
+                        user.role === "staff" ? "btn-warning" : "btn-secondary"
+                      }`}
                     >
-                      Revoke Admin
+                      {user.role === "staff" ? "Remove Staff" : "Make Staff"}
                     </button>
                   )}
                 </td>
